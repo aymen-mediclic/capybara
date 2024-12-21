@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div id="quiz-container">
+      <p class="quiz-intro" id="quiz-intro">
+        O objetivo deste quiz é responder corretamente para chegar à última parte. Clique em <b>Começar</b> quando estiver pronto.
+      </p>
+      <button class="start-button" id="start-button">Começar</button>
+    </div>
+  </div>
+
+  <script>
+    const quizQuestions = [
+      {
+        question: "Qual é o melhor time no Rio?",
+        choices: ["Fluminense", "Flamengo", "Botafogo"],
+        correct: "Fluminense"
+      },
+      {
+        question: "Em qual dos seguintes podemos colocar queijo?",
+        choices: ["Pão", "Pau", "Ambos"],
+        correct: "Ambos"
+      },
+      {
+        question: "Qual é o melhor animal do mundo?",
+        choices: ["Rato", "Gato", "Capivara"],
+        correct: "Capivara"
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+
+    const startButton = document.getElementById("start-button");
+    const quizContainer = document.getElementById("quiz-container");
+    const quizIntro = document.getElementById("quiz-intro");
+
+    startButton.addEventListener("click", function () {
+      quizIntro.style.display = "none";
+      startButton.style.display = "none";
+      showQuestion();
+    });
+
+    function showQuestion() {
+      const questionData = quizQuestions[currentQuestionIndex];
+      quizContainer.innerHTML = `
+        <p class="quiz-question">${questionData.question}</p>
+        <form id="quiz-form">
+          ${questionData.choices
+            .map(
+              (choice) => `
+                <label>
+                  <input type="radio" name="answer" value="${choice}">
+                  ${choice}
+                </label>
+              `
+            )
+            .join("<br>")}
+          <button type="button" class="next-button" onclick="checkAnswer()">Enviar</button>
+        </form>
+      `;
+    }
+
+    function checkAnswer() {
+      const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+      if (!selectedAnswer) {
+        alert("Por favor, escolha uma resposta!");
+        return;
+      }
+
+      const questionData = quizQuestions[currentQuestionIndex];
+      if (selectedAnswer.value === questionData.correct) {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizQuestions.length) {
+          showQuestion();
+        } else {
+          showFinalMessage();
+        }
+      } else {
+        quizContainer.innerHTML = `<p>Resposta errada. Tente novamente!</p>
+          <button onclick="showQuestion()">Tentar outra vez</button>`;
+      }
+    }
+    function showYesResponse() {
+  // Show the Congrats message with animation
+  const congratsMessage = document.createElement('p');
+  congratsMessage.classList.add('congrats-message');
+  congratsMessage.textContent = "Parabéns! Você fez meu coração feliz. ❤️";
+
+  // Add the message to the container
+  quizContainer.innerHTML = ''; // Clear existing content
+  quizContainer.appendChild(congratsMessage); // Append the new message
+}
+
+    function showFinalMessage() {
+      quizContainer.innerHTML = `
+        <p>Parabéns! Você completou o quiz!</p>
+        <p>Você aceitaria minha declaração de casamento? (é por amor, não por dinheiro ou carros ou qualquer outra coisa).</p>
+        <button class="yes-button" onclick="showYesResponse()">Sim</button>
+        <button class="no-button" onclick="showNoResponse()">Não</button>
+      `;
+    }
+
+    function showYesResponse() {
+      quizContainer.innerHTML = `<p>Obrigado! Você fez meu coração feliz. ❤️</p>`;
+    }
+
+    function showNoResponse() {
+      quizContainer.innerHTML = `<p>Tudo bem, respeito sua decisão. 😔</p>`;
+    }
+  </script>
+</body>
+</html>

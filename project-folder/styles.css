@@ -1,0 +1,120 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #FFE2E2; /* Pink love color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container Style */
+.container {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+/* Form Style */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+form label {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+form input[type="radio"] {
+  margin-right: 10px;
+}
+
+.next-button {
+  margin-top: 20px;
+  background-color: #e63946; /* Red love color */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  align-self: center;
+}
+
+.next-button:hover {
+  background-color: #d62828; /* Darker red */
+}
+/* Yes and No Buttons */
+.yes-button {
+  background-color: #28a745; /* Green */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.yes-button:hover {
+  background-color: #218838;
+}
+
+.no-button {
+  background-color: #dc3545; /* Red */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.no-button:hover {
+  background-color: #c82333;
+}
+
+/* Quiz Styles */
+.quiz-intro {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.quiz-question {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #444;
+}
+/* Congrats Animation */
+@keyframes congratsAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.congrats-message {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 20px;
+  animation: congratsAnimation 1.5s ease-out;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A capivara apaixonada</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <img src="logo.jfif" alt="CapyWebsite Logo" class="logo">
+    
+    <form id="loginForm" onsubmit="return validateLogin()">
+      <input type="text" id="username" placeholder="Usuário" required>
+      <input type="password" id="password" placeholder="Senha" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <p id="error" class="hidden">Nome de usuário ou senha inválidos!</p>
+  </div>
+
+  <script>
+    // Function to validate the login credentials
+    function validateLogin() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  var correctUsername = "Raquel";
+  var correctPassword = "Belém carioca";
+
+  if (username === correctUsername && password === correctPassword) {
+    window.location.href = "quiz.html"; // Redireciona para a página de introdução do quiz
+    return false;
+  } else {
+    document.getElementById("error").classList.remove("hidden");
+    return false; // Impede o envio do formulário
+  }
+}
+
+  </script>
+</body>
+</html>
